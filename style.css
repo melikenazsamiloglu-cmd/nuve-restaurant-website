@@ -1,0 +1,1556 @@
+/* Temel Ayarlar ve Renkler */
+:root {
+    --bg-dark: #0a0a0a;
+    --text-light: #e8e5e1;
+    --accent-gold: #c2a370;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    /* Footer'ın sayfanın altında kalmasını garanti etmek için */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- HEADER --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background-color: rgba(10, 10, 10, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(194, 163, 112, 0.2);
+}
+
+.logo a {
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-size: 2rem;
+    letter-spacing: 5px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover, .navbar a.active {
+    color: var(--accent-gold);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-reservation {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    border: 1px solid var(--accent-gold);
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-reservation:hover {
+    background-color: var(--accent-gold);
+    color: var(--bg-dark);
+}
+
+.divider { color: #555; }
+.lang-switch { color: #fff; text-decoration: none; font-size: 0.8rem; }
+
+/* --- 6'LI GRID YAPISI --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Header (yaklaşık 80px) boyutunu çıkarıyoruz */
+    height: calc(100vh - 80px);
+    margin-top: 80px; 
+}
+
+.grid-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: background-color 0.4s ease;
+}
+
+.grid-item:hover .overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.grid-text {
+    position: relative;
+    z-index: 10;
+    color: #fff;
+    font-weight: 300;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transition: transform 0.4s ease;
+}
+
+.grid-item:hover .grid-text {
+    transform: scale(1.05);
+    color: var(--accent-gold);
+}
+
+/* Arka Plan Resimleri (Kendi görsellerini buraya ekle) */
+.bg-1 { background-image: url('nüvedeneyimi.jpeg'); }
+.bg-2 { background-image: url('harita.png'); }
+.bg-3 { background-image: url('mahsen.jpeg'); }
+.bg-4 { background-image: url('ev.jpeg'); }
+.bg-5 { background-image: url('el3.jpeg'); }
+.bg-6 { background-image: url('menu.jpeg'); }
+
+/* --- ZENGİNLEŞTİRİLMİŞ FOOTER --- */
+.footer {
+    background-color: #050505;
+    padding: 3rem 4rem 1rem 4rem;
+    border-top: 1px solid rgba(194, 163, 112, 0.2);
+}
+
+.awards-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(232, 229, 225, 0.1);
+}
+
+.award {
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+}
+
+.award-dot {
+    color: #555;
+    margin: 0 15px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-col h3 {
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.footer-col p {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: rgba(232, 229, 225, 0.7);
+}
+
+.contact-info {
+    margin-top: 1rem;
+    color: var(--accent-gold) !important;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(232, 229, 225, 0.1);
+}
+
+.footer-bottom p {
+    font-size: 0.75rem;
+    color: rgba(232, 229, 225, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Tablet ve Mobil Uyumluluk */
+@media (max-width: 900px) {
+    .grid-container { grid-template-columns: repeat(2, 1fr); height: auto; }
+    .grid-item { height: 40vh; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .navbar ul { display: none; } /* Mobilde menüyü gizle (Hamburger menü eklenebilir) */
+}
+/* --- MENÜ SAYFASI ÖZEL TASARIMI --- */
+.menu-page {
+    background-color: #0d0d0d;
+}
+
+/* Menü Başlık Alanı */
+.menu-intro {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* menu-hero.jpg yerine kendi giriş görselini ekleyebilirsin */
+    background: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.9)), url('menu-hero.jpeg');
+    background-size: cover;
+    background-attachment: fixed; 
+    margin-top: 80px; /* Header boşluğu */
+}
+
+.menu-intro h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    letter-spacing: 12px;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+}
+
+.menu-intro .subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: rgba(232, 229, 225, 0.6);
+    text-transform: uppercase;
+}
+
+/* Katmanlı Menü Düzeni (Görsel ve Yazı Yanyana) */
+.menu-section-wrapper {
+    display: flex;
+    min-height: 80vh;
+    align-items: stretch; /* İçeriklerin aynı boyda olmasını sağlar */
+    border-bottom: 1px solid rgba(194, 163, 112, 0.1);
+}
+
+/* Ters çevrilmiş satır yapısı (Bir sağda bir solda görsel için) */
+.menu-section-wrapper.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Fotoğraf Alanı */
+.menu-image {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(40%); /* Lüks hissi için hafif siyah-beyaz tonu */
+    transition: filter 0.6s ease;
+}
+
+.menu-section-wrapper:hover .menu-image {
+    filter: grayscale(0%); /* Üzerine gelince rengi geri gelir */
+}
+
+/* Yazı İçerik Alanı */
+.menu-text-content {
+    flex: 1;
+    padding: 6rem 5rem;
+    background-color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stage-label {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--accent-gold);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.stage-name {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    letter-spacing: 6px;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.stage-philosophy {
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(232, 229, 225, 0.5);
+    margin-bottom: 3.5rem;
+    border-left: 2px solid var(--accent-gold);
+    padding-left: 15px;
+    line-height: 1.6;
+}
+
+/* Yemek Listesi */
+.item-list {
+    list-style: none;
+}
+
+.item-list li {
+    margin-bottom: 2.5rem;
+}
+
+.item-list .name {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 6px;
+}
+
+.item-list .desc {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(232, 229, 225, 0.7);
+    line-height: 1.5;
+}
+/* --- HERO VİDEO TASARIMI --- */
+.hero-video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Tam ekran yüksekliği */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Taşmaları engeller */
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Videonun ekranı tamamen kaplamasını sağlar */
+    z-index: -2; /* En arkaya gönderir */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Videoyu %40 karartır ki yazılar okunsun */
+    z-index: -1;
+}
+
+.hero-content {
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    letter-spacing: 15px;
+    margin: 20px 0;
+    color: var(--accent-gold);
+}
+
+.btn-discover {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 35px;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    text-decoration: none;
+    letter-spacing: 3px;
+    transition: 0.4s;
+}
+
+.btn-discover:hover {
+    background-color: var(--accent-gold);
+    color: #000;
+}
+
+/* Arka Plan Resimleri Sınıfları */
+/* İlgili JPG veya PNG dosyalarını kendi bilgisayarındaki isimleriyle eşleştir */
+.bg-uyanis { background-image: url('uyanis.jpeg'); }
+.bg-koksalma { background-image: url('kok-salma.jpeg'); }
+.bg-atesingucu { background-image: url('atesingucu.jpeg'); }
+.bg-tatlihasat { background-image: url('tatlihasat.jpeg'); }
+
+/* Mobil Uyumluluk */
+@media (max-width: 900px) {
+    .menu-section-wrapper, .menu-section-wrapper.reverse {
+        flex-direction: column;
+    }
+    .menu-image {
+        min-height: 40vh;
+    }
+    .menu-text-content {
+        padding: 4rem 2rem;
+    }
+}
+/* ========================================= */
+/* --- YENİ TOHUM KÜTÜPHANESİ (FULL FOTO) --- */
+/* ========================================= */
+
+.nuvex-page {
+    background-color: #0a0a0a;
+}
+
+.nuvex-rich-container {
+    padding-top: 160px; /* Yazıların menünün altına girmesini engeller! */
+    padding-bottom: 100px;
+    width: 100%;
+    min-height: 100vh;
+    /* ARKA PLAN FOTOĞRAFI BURADA */
+    background-image: url('nuvex.jpeg'); /* Uzantıyı .jpg yaptık */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    display: flex;
+    justify-content: center;
+}
+
+.nuvex-content-overlay {
+    display: flex;
+    width: 90%;
+    max-width: 1400px;
+    gap: 5rem;
+    align-items: flex-start;
+}
+
+/* Sol Sütun: Devasa Başlık */
+.nuvex-title-box {
+    flex: 1;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.devasa-tohumlar {
+    font-family: var(--font-heading);
+    font-size: 6rem; 
+    color: var(--accent-gold);
+    letter-spacing: 20px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.9); /* Yazıyı belirginleştirir */
+}
+
+/* Sağ Sütun: Veri Panelleri */
+.nuvex-interface-box {
+    flex: 1.2;
+    background-color: rgba(10, 10, 10, 0.75); /* Yarı şeffaf karanlık kutu */
+    padding: 3.5rem;
+    border: 1px solid rgba(194, 163, 112, 0.2);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px); /* Arkayı bulanıklaştıran çok şık bir efekt */
+    max-width: 650px;
+    border-radius: 4px;
+}
+
+.sys-badge {
+    color: var(--accent-gold);
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+    display: inline-block;
+    border-bottom: 1px solid var(--accent-gold);
+    padding-bottom: 5px;
+}
+
+.nuvex-interface-box h1 {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    letter-spacing: 5px;
+}
+
+.sys-desc {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: rgba(232, 229, 225, 0.7);
+    margin-bottom: 3rem;
+}
+
+/* Arama Alanı Düzeltmeleri */
+.sys-search { margin-bottom: 3rem; }
+.sys-search label {
+    display: block;
+    color: var(--accent-gold);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+.sys-input-wrapper {
+    display: flex;
+    border-bottom: 1px solid rgba(232, 229, 225, 0.3);
+}
+.sys-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px 0;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+}
+.sys-input:focus { outline: none; }
+.sys-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent-gold);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 0 10px;
+}
+
+/* Veri Kartları */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+.sys-data-card {
+    background-color: transparent; 
+    border-top: 1px solid rgba(194, 163, 112, 0.2);
+    padding-top: 1.5rem;
+}
+.data-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+}
+.data-id { color: #fff; }
+.data-status { color: #a3c270; letter-spacing: 1px; }
+.seed-title {
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 3px;
+}
+.data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+.box-title {
+    font-size: 0.75rem;
+    color: rgba(232, 229, 225, 0.5);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 8px;
+}
+.box-val { font-size: 1rem; color: #fff; }
+.box-val.highlight { color: #a3c270; }
+
+/* Mobil Uyumluluk */
+@media (max-width: 1000px) {
+    .nuvex-content-overlay { flex-direction: column; gap: 3rem; }
+    .devasa-tohumlar { font-size: 4rem; text-align: center; }
+    .nuvex-title-box { text-align: center; width: 100%; }
+    .nuvex-interface-box { width: 100%; padding: 2rem; }
+}
+/* --- ZENGİN MİSAFİRHANE SAYFASI CSS --- */
+.lodging-page {
+    background-color: #080808;
+    overflow-x: hidden;
+}
+
+.lodging-rich-container {
+    padding-top: 140px;
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Hero Section (Giriş) */
+.lodging-hero-section {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 8rem;
+}
+
+.hero-text { flex: 1; }
+.hero-text h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--accent-gold);
+    letter-spacing: 6px;
+    margin-bottom: 2rem;
+}
+.hero-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(232, 229, 225, 0.7);
+    font-weight: 300;
+}
+
+.hero-image-box { flex: 1.2; }
+.rich-img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    filter: sepia(10%);
+}
+
+/* Detaylar Bölümü (Görsel Sol - Yazı Sağ) */
+.lodging-details-section {
+    margin-bottom: 8rem;
+}
+
+.details-grid {
+    display: flex;
+    flex-direction: row-reverse; /* Görsel sağda, yazı solda olsun diye */
+    gap: 5rem;
+    align-items: center;
+}
+
+.details-text { flex: 1; }
+.details-text h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    letter-spacing: 4px;
+    margin-bottom: 2rem;
+}
+.details-text p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(232, 229, 225, 0.6);
+    margin-bottom: 3rem;
+}
+
+.info-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.info-item strong {
+    color: var(--accent-gold);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Deneyim Bölümü */
+.experience-content {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.experience-text h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--accent-gold);
+    margin-bottom: 2rem;
+}
+
+.experience-text p {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    color: rgba(232, 229, 225, 0.7);
+    line-height: 1.8;
+}
+
+.experience-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 1000px) {
+    .lodging-hero-section, .details-grid {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .experience-gallery {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- HAKKIMIZDA: KURUMSAL REVİZE --- */
+.about-page {
+    background-color: #080808;
+}
+
+.about-container {
+    padding: 160px 8% 100px 8%;
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 10rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-hero h1 {
+    font-family: var(--font-heading);
+    font-size: 3.8rem;
+    letter-spacing: 8px;
+    margin-bottom: 2.5rem;
+    color: var(--accent-gold);
+    line-height: 1.1;
+}
+
+.hero-intro {
+    font-size: 1.15rem;
+    line-height: 2.1;
+    color: rgba(232, 229, 225, 0.8);
+    font-weight: 300;
+}
+
+/* Yerleşke Izgarası */
+.location-story {
+    margin-bottom: 12rem;
+}
+
+.location-grid {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+}
+
+.location-text { flex: 1; }
+.location-image { flex: 1.2; }
+
+.about-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.location-text h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.location-text p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: rgba(232, 229, 225, 0.6);
+}
+
+/* Üç Temel Sütun */
+.pillars-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    margin-bottom: 12rem;
+    text-align: center;
+}
+
+.pillar-icon {
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    margin-bottom: 1.5rem;
+}
+
+.pillar h3 {
+    font-family: var(--font-heading);
+    color: #fff;
+    margin-bottom: 1.2rem;
+    letter-spacing: 3px;
+}
+
+.pillar p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(232, 229, 225, 0.5);
+}
+
+/* Kapanış Bölümü */
+.about-closing {
+    position: relative;
+    text-align: center;
+}
+
+.closing-img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    opacity: 0.4;
+}
+
+.closing-quote {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+}
+
+blockquote {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--accent-gold);
+    letter-spacing: 3px;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+/* Mobil */
+@media (max-width: 900px) {
+    .location-grid { flex-direction: column; }
+    .pillars-section { grid-template-columns: 1fr; }
+    .about-hero h1 { font-size: 2.5rem; }
+}
+/* Misafirhane sayfasındaki devasa yatak odası fotoğrafını küçülten kod */
+.details-image {
+    flex: 1; 
+    width: 100%;
+    max-width: 550px; /* Görselin yatayda ekranı yutmasını engeller */
+}
+
+.rich-img {
+    width: 100%;
+    height: auto;
+    max-height: 500px; /* Resmin dikeyde çok uzamasını engeller */
+    object-fit: cover; /* Resmi sündürmeden, orantılı kırparak kutuya sığdırır */
+    border-radius: 4px;
+}
+/* --- REZERVASYON SAYFASI TASARIMI --- */
+.reservation-page {
+    background-color: #0a0a0a;
+}
+
+.reservation-container {
+    padding: 160px 8% 100px 8%;
+    min-height: 100vh;
+}
+
+.reservation-content {
+    display: flex;
+    gap: 6rem;
+    align-items: flex-start;
+}
+
+.res-text { flex: 1; }
+.res-form-box { 
+    flex: 1.2; 
+    background-color: #0d0d0d;
+    padding: 3.5rem;
+    border: 1px solid rgba(194, 163, 112, 0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.res-text h1 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--accent-gold);
+    margin-bottom: 2rem;
+    letter-spacing: 5px;
+}
+
+.res-contact-info {
+    margin-top: 3rem;
+    border-top: 1px solid rgba(232, 229, 225, 0.1);
+    padding-top: 2rem;
+}
+
+.res-contact-info p {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: rgba(232, 229, 225, 0.6);
+}
+
+.res-contact-info strong {
+    color: var(--accent-gold);
+    margin-right: 10px;
+}
+
+/* Form Elemanları */
+.input-group {
+    margin-bottom: 1.8rem;
+}
+
+.input-group label {
+    display: block;
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.input-group input, 
+.input-group select, 
+.input-group textarea {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(232, 229, 225, 0.2);
+    color: #fff;
+    font-family: var(--font-body);
+    padding: 10px 0;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.input-group input:focus, 
+.input-group select:focus, 
+.input-group textarea:focus {
+    outline: none;
+    border-bottom-color: var(--accent-gold);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 15px;
+    font-family: var(--font-body);
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: 0.4s;
+    margin-top: 1rem;
+}
+
+.btn-submit:hover {
+    background-color: var(--accent-gold);
+    color: #000;
+}
+
+/* Mobil */
+@media (max-width: 1000px) {
+    .reservation-content { flex-direction: column; }
+    .res-form-box { padding: 2rem; width: 100%; }
+    .form-row { grid-template-columns: 1fr; }
+}
+/* ========================================= */
+/* --- KUSURSUZ MOBİL UYUMLULUK (TELEFON) --- */
+/* ========================================= */
+
+@media (max-width: 900px) {
+    /* 1. Üst Menü (Header) Toparlaması */
+    .header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        position: relative; /* Sabit menüyü mobilde serbest bırakalım ki yer kaplamasın */
+    }
+    .navbar ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .navbar a { font-size: 0.75rem; }
+    .nav-actions { display: none; } /* Mobilde rezervasyon butonunu gizleyip kalabalığı azaltıyoruz */
+
+    /* 2. Genel Boşluklar ve Taşan Ekranlar */
+    main[class*="container"] {
+        padding: 40px 5% 60px 5% !important; /* Devasa boşlukları sildik */
+    }
+
+    /* 3. Yan Yana Duran (Flex) Yapıları Alt Alta Dizme */
+    .lodging-hero-section, 
+    .details-grid, 
+    .reservation-content, 
+    .nuvex-content-overlay, 
+    .location-grid {
+        flex-direction: column !important;
+        gap: 3rem !important;
+        text-align: center;
+    }
+
+    /* 4. Yan Yana Duran (Grid) Kutuları Tek Sütun Yapma */
+    .grid-container, 
+    .pillars-section, 
+    .footer-grid, 
+    .data-grid, 
+    .form-row, 
+    .info-list {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* 5. Taşan Devasa Yazıları Küçültme */
+    h1, .location-text h2, .res-text h1, .experience-text h2 {
+        font-size: 2.2rem !important;
+        letter-spacing: 3px !important;
+    }
+    .devasa-tohumlar {
+        font-size: 3.5rem !important;
+        letter-spacing: 10px !important;
+        text-align: center;
+    }
+    p {
+        font-size: 0.95rem !important;
+        text-align: center; /* Mobilde yazılar ortalanınca daha şık durur */
+    }
+
+    /* 6. Form ve Kutu İçeriklerini Ekrana Sığdırma */
+    .split-interface, 
+    .nuvex-interface-box, 
+    .res-form-box {
+        padding: 1.5rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* 7. Resimleri Çerçeveye Hapsetme */
+    .rich-img, .about-img, .closing-img {
+        height: auto !important;
+        max-height: 400px !important;
+    }
+    
+    /* 8. Footer (Alt Bilgi) Toparlaması */
+    .footer {
+        padding: 2rem 1rem !important;
+    }
+    .awards-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .award-dot { display: none; } /* Mobilde noktalara gerek yok */
+}
+/* --- HAKKIMIZDA SAYFASI GİRİŞ ARKA PLANI (TAM EKRAN) --- */
+.hakkimizda-hero-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('nüvedeneyimi.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    /* FOTOĞRAFI KUTUDAN KURTARIP TÜM EKRANA YAYAN KISIM */
+    width: 100vw; 
+    margin-left: calc(-50vw + 50%); 
+    
+    min-height: 70vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 5%;
+    text-align: center;
+}
+
+/* Metinlerin okunabilirliği için gölge */
+.hero-content-wrapper h1,
+.hero-content-wrapper p {
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+/* --- SEFERİHİSAR YAVAŞ RİTİM (TAM EKRAN) --- */
+.seferihisar-tam-ekran {
+    /* Arkaya şeffaf siyah katman ve manzara fotoğrafı */
+    /* FOTOĞRAF ADINI BURAYA KENDİ DOSYANA GÖRE YAZ */
+    background-image: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.8)), url('seferihisar.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Kaydırırken fotoğraf sabit kalır, çok havalı durur */
+    
+    /* TAM EKRANA YAYMA HİLESİ (Sağdan soldan taşırır) */
+    width: 100vw; 
+    margin-left: calc(-50vw + 50%); 
+    
+    min-height: 70vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 5%;
+    text-align: center;
+}
+
+.seferihisar-icerik {
+    max-width: 800px; /* Yazının çok fazla yayılmasını engeller */
+    margin: 0 auto;
+}
+
+.seferihisar-icerik .sys-badge {
+    color: var(--accent-gold);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.seferihisar-icerik h2 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--accent-gold);
+    letter-spacing: 8px;
+    line-height: 1.3;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.9); /* Okunabilirlik için gölge */
+}
+
+.seferihisar-icerik p {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: rgba(232, 229, 225, 0.9);
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.9);
+}
+
+/* Mobilde yazıyı biraz küçültelim */
+@media (max-width: 900px) {
+    .seferihisar-icerik h2 { font-size: 2.5rem; }
+}
+/* --- ANA SAYFA KAPANIS BANNER --- */
+.ana-sayfa-kapanis {
+    /* Arkaplan resmi ve karartma filtresi */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('deniz.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Kaydırırken resim sabit kalır, çok havalı durur */
+    
+    /* TAM EKRANA YAYMA (Sağdan soldan boşlukları yok eder) */
+    width: 100vw; 
+    margin-left: calc(-50vw + 50%); 
+    
+    /* Yükseklik ve Hizalama */
+    min-height: 60vh; /* Ekranın %60'ını kaplar, istersen artırabilirsin */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 10%;
+    margin-top: 80px; /* Üstteki grid ile mesafe */
+}
+
+.kapanis-icerik {
+    max-width: 1000px;
+}
+
+.ana-sayfa-kapanis blockquote {
+    font-family: var(--font-heading); /* NÜVE'nin asil fontu */
+    font-size: 3rem;
+    color: var(--accent-gold); /* Altın sarısı detay */
+    line-height: 1.5;
+    font-style: italic;
+    letter-spacing: 5px;
+    text-shadow: 3px 3px 20px rgba(0, 0, 0, 0.8); /* Yazının okunması için derinlik */
+}
+
+/* Mobil için yazı boyutunu ayarla */
+@media (max-width: 768px) {
+    .ana-sayfa-kapanis blockquote {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+    .ana-sayfa-kapanis {
+        min-height: 40vh;
+    }
+}
+/* --- YUMUŞAK KAYDIRMA EFEKTİ --- */
+html {
+    scroll-behavior: smooth;
+}
+/* --- YUMUŞAK KAYDIRMA EFEKTİ --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- HERO VİDEO İÇERİĞİ (SADE VE ALTA HİZALI - YENİ) --- */
+.hero-content.bottom-aligned {
+    position: absolute;
+    bottom: 8%; 
+    left: 50%;
+    transform: translateX(-50%); 
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+}
+
+.hero-slogan {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    font-weight: 300;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.9); 
+}
+
+.btn-discover {
+    display: inline-block;
+    padding: 12px 40px;
+    border: 1px solid var(--accent-gold); 
+    color: var(--accent-gold);
+    text-decoration: none;
+    letter-spacing: 4px;
+    font-size: 0.85rem;
+    transition: 0.4s ease;
+    background: rgba(0, 0, 0, 0.3); 
+}
+
+.btn-discover:hover {
+    background-color: var(--accent-gold);
+    color: #000;
+}
+/* =========================================
+   ANA MENÜ GİRİŞİ: 3'LÜ KATEGORİ IZGARASI
+   ========================================= */
+
+/* Sadece bu sayfaya özel genel ayar */
+.menu-selection-page {
+    background-color: #0a0a0a;
+    overflow-x: hidden; /* Yatay kaymayı engeller */
+}
+
+/* 3'lü Izgara Kapsayıcısı */
+.menu-categories-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Yan yana 3 eşit sütun */
+    width: 100vw;
+    height: 100vh; /* Ekranın tamamını kaplar */
+    margin-left: calc(-50vw + 50%); /* Tam ekran yayma hilesi */
+}
+
+/* Her Bir Menü Kutusu */
+.menu-cat-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+/* Kategori Arka Planları (Fotoğraf isimlerini kendi dosyalarına göre değiştir) */
+.cat-tadim { background-image: url('menu.jpeg'); }
+.cat-alakart { background-image: url('alakart.jpeg'); }
+.cat-icecek { background-image: url('icecek.jpeg'); }
+
+/* Siyah Karartma Filtresi */
+.menu-cat-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* %50 karanlık */
+    transition: background-color 0.5s ease;
+    z-index: 1;
+}
+
+/* Başlık Yazıları */
+.menu-cat-title {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 5px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.8);
+    transition: transform 0.5s ease, color 0.5s ease;
+}
+
+/* --- FARE İLE ÜZERİNE GELİNCE (HOVER EFEKTİ) --- */
+.menu-cat-item:hover .menu-cat-overlay {
+    background-color: rgba(0, 0, 0, 0.2); /* Fotoğraf aydınlanır */
+}
+
+.menu-cat-item:hover .menu-cat-title {
+    transform: scale(1.1); /* Yazı sana doğru yaklaşır */
+    color: var(--accent-gold); /* Altın rengi parlar */
+}
+
+/* --- MOBİL UYUM --- */
+@media (max-width: 900px) {
+    .menu-categories-wrapper {
+        grid-template-columns: 1fr; /* Mobilde alt alta dizer */
+    }
+    .menu-cat-item {
+        height: 33.33vh; /* Her biri ekranın üçte birini kaplar */
+    }
+    .menu-cat-title {
+        font-size: 2.2rem;
+    }
+}
+/* O sihirli kutucuğu tamamen görünmez yapıyoruz */
+.menu-checkbox {
+    display: none !important;
+}
+/* ========================================= */
+/* SADECE CSS İLE HAMBURGER MENÜ (NO JS)     */
+/* ========================================= */
+
+/* Checkbox'ı sayfadan tamamen gizliyoruz */
+.menu-checkbox {
+    display: none;
+}
+
+/* Masaüstünde Hamburger ve Mobil Buton gizli */
+.hamburger { display: none; cursor: pointer; }
+.mobile-only { display: none; }
+
+/* 📱 MOBİL UYUMLULUK */
+/* MASAÜSTÜ REZERVASYON BUTONUNU GARANTİYE ALIYORUZ */
+.desktop-only {
+    display: block !important;
+}
+@media (max-width: 900px) {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        position: relative;
+    }
+    
+    .desktop-only { display: none; }
+    .mobile-only { display: block; margin-top: 15px; }
+
+    /* HAMBURGER İKONU ALTIN RENGİ */
+    .hamburger { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 6px; 
+        z-index: 1000; 
+    }
+    .hamburger .bar { 
+        width: 30px; 
+        height: 2px; 
+        background-color: #d4af37; 
+        transition: all 0.4s ease; 
+    }
+
+    /* MENÜNÜN KAPALI HALİ (Ekranın soluna itilmiş durumda) */
+    .navbar {
+        position: absolute;
+        top: 80px;
+        left: -100%; /* Soldan dışarı iter */
+        width: 100%;
+        background-color: rgba(5, 5, 5, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+        transition: 0.5s ease; /* Yağ gibi kayarak gelmesini sağlar */
+        z-index: 999;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        gap: 30px;
+    }
+    
+    .navbar ul li a { font-size: 1.2rem; }
+
+    /* İŞTE SİHİR BURADA BAŞLIYOR: 
+       Kullanıcı gizli checkbox'a (yani üç çizgiye) tıkladığında menü sola kayar */
+    .menu-checkbox:checked ~ .navbar {
+        left: 0;
+    }
+
+    /* ÇARPI (X) ANİMASYONU: 
+       Checkbox işaretlendiğinde 3 çizgi anında X şeklini alır */
+    .menu-checkbox:checked + .hamburger .bar:nth-child(1) { 
+        transform: translateY(8px) rotate(45deg); 
+    }
+    .menu-checkbox:checked + .hamburger .bar:nth-child(2) { 
+        opacity: 0; 
+    }
+    .menu-checkbox:checked + .hamburger .bar:nth-child(3) { 
+        transform: translateY(-8px) rotate(-45deg); 
+    }
+}
+/* =========================================
+   MASAÜSTÜ REZERVASYON BUTONU KESİN ÇÖZÜM
+   (Sadece 901px'den geniş ekranlarda çalışır)
+   ========================================= */
+@media (min-width: 901px) {
+    .header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    
+    .nav-actions.desktop-only {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Mobilde çalışan ama masaüstünde ASLA görünmemesi gerekenler */
+    .hamburger, 
+    .menu-checkbox, 
+    .mobile-only {
+        display: none !important;
+    }
+}
+/* --- Mobil Düzenlemeler Başlangıcı --- */
+@media (max-width: 768px) {
+
+    /* Fotoğrafların ve Yazıların Kaymasını Engelleyen Genel Ayar */
+    .icerik-alani, .metin-kutusu, .fotograf-grubu { 
+        display: block !important; /* Yan yana durmayı iptal eder, alt alta dizer */
+        width: 100% !important;
+        padding: 10px !important;
+        box-sizing: border-box; /* Padding genişliği dışa taşırmasın */
+    }
+
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+/* --- Mobil Düzenlemeler Sonu --- */
+@media (max-width: 768px) {
+    h1 { font-size: 1.8rem !important; }
+    h2 { font-size: 1.5rem !important; }
+    p { font-size: 1rem !important; padding: 0 15px; } /* Yazılar kenarlara yapışmasın */
+}
+@media (max-width: 768px) {
+    /* Hakkımızda ve Kütüphane bölümlerindeki tüm yan yana yapıları alt alta getir */
+    .hakkimizda-icerik, .kutuphane-grid, .kart-yapisi {
+        display: flex !important;
+        flex-direction: column !important; /* Her şeyi alt alta dizer */
+        align-items: center !important;
+        padding: 20px !important;
+    }
+
+    /* Fotoğrafları kutunun içine hapset */
+    .hakkimizda-icerik img, .kutuphane-resim {
+        width: 100% !important; /* Ekranı tam kaplasın ama taşmasın */
+        max-width: 350px !important; /* Mobilde çok devasa olmasın diye sınır koyduk */
+        height: auto !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Kayan yazıları toparla */
+    .metin-alani {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0 10px !important;
+    }
+    
+    p, h2 {
+        font-size: 1rem !important; /* Yazı boyutunu mobilde biraz küçült */
+        line-height: 1.5;
+    }
+}
+/* --- BİLGİSAYAR VE GENEL GÖRÜNÜM --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Bilgisayarda ekranı tam kaplar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Videonun siyah boşluk bırakmadan alanı doldurmasını sağlar */
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Yazının okunması için hafif karartma */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 90%;
+    max-width: 800px; /* Yazının çok fazla uzamasını engeller */
+}
+
+.hero-slogan {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.btn-discover {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 1px solid #d4af37;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+/* --- SADECE MOBİL GÖRÜNÜM (Telefonlar için sihirli dokunuş) --- */
+/* --- SADECE MOBİL GÖRÜNÜM --- */
+@media (max-width: 768px) {
+    .hero-section {
+        /* 100vh yerine 55vh yapıyoruz. Ekranın tamamını değil, yarısını kaplayacak. 
+           Böylece video o kadar fazla zoom yapmak zorunda kalmayacak! */
+        height: 55vh !important; 
+        min-height: 400px !important; /* Çok da ezilmesin diye bir sınır koyuyoruz */
+    }
+    
+    .hero-slogan {
+        font-size: 1.5rem !important; /* Yazı fontunu mobilde biraz daha tatlı bir boyuta çektik */
+        line-height: 1.4 !important;
+        padding: 0 15px !important; /* Kenarlara yapışmasını engeller */
+    }
+}

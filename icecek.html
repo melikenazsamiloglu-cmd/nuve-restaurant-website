@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İçecek Menüsü | NÜVE</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* İÇECEK SAYFASI ÖZEL TASARIMI */
+        .drink-page {
+            background-color: #050505; /* Çok koyu asil siyah */
+            color: #e8e5e1;
+            overflow-x: hidden;
+        }
+
+        /* 3'LÜ FOTOĞRAF BANNER (ŞARAP, KOKTEYL, BİRA GEÇİŞLERİ) */
+        .drink-banner {
+            display: flex;
+            width: 100vw;
+            height: 70vh;
+            margin-left: calc(-50vw + 50%); /* Tam ekran yayma */
+            position: relative;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+
+        .banner-col {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            border-right: 5px solid #050505; /* Siyah ayırıcı çizgiler */
+        }
+        .banner-col:last-child { border-right: none; }
+
+        /* Banner Üzerindeki Altın Yazı */
+        .banner-overlay {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            background: rgba(0,0,0,0.6);
+            padding: 30px 60px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 5px;
+            backdrop-filter: blur(5px);
+        }
+
+        .banner-overlay h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: #d4af37;
+            letter-spacing: 15px;
+            margin-bottom: 5px;
+        }
+
+        .banner-overlay p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 5px;
+            color: #fff;
+        }
+
+        /* GENEL MENÜ METİN ALANLARI */
+        .drink-menu-section {
+            padding: 60px 10%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #e8e5e1;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+        }
+        .section-title p {
+            font-family: 'Cinzel', serif;
+            font-style: italic;
+            color: rgba(212, 175, 55, 0.8);
+            letter-spacing: 2px;
+        }
+
+        /* 2'Lİ ŞARAP IZGARASI */
+        .wine-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px 100px;
+        }
+
+        .menu-category h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #e8e5e1;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .menu-category h4 span {
+            display: block; font-style: italic; font-weight: 300; font-size: 0.85rem; color: rgba(255,255,255,0.5);
+        }
+
+        .drink-item { margin-bottom: 25px; }
+        .drink-item .name { font-size: 1.2rem; color: #fff; display: block; margin-bottom: 5px; }
+        .drink-item .desc { font-size: 0.95rem; color: rgba(212, 175, 55, 0.8); font-style: italic; }
+
+        /* İMZA KOKTEYLLER (ORTALANMIŞ) */
+        .signature-cocktails {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .signature-cocktails .drink-item { margin-bottom: 40px; }
+        .signature-cocktails .name { font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 2px; }
+
+        /* KLASİK KOKTEYLLER (RESİMLİ IZGARA) */
+        .classic-cocktails {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .classic-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .classic-item img {
+            width: 80px; /* Kokteyl ikonlarının boyutu */
+            height: auto;
+        }
+        .classic-item .name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+        }
+
+        /* 3'LÜ BİRA & ALKOLSÜZ IZGARASI */
+        .beverage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        /* FOTOĞRAF ATAMALARI (Bu kısımlara kendi dosyalarının adını yazacaksın) */
+        .bg-w1 { background-image: url('sarap.webp'); } /* Şarap 1. Foto */
+        .bg-w2 { background-image: url('sarap2.jpeg'); } /* Şarap 2. Foto */
+        .bg-w3 { background-image: url('sarap3.jpeg'); } /* Şarap 3. Foto */
+        
+        .bg-c1 { background-image: url('kokteyl1.jpeg'); } /* Kokteyl 1. Foto */
+        .bg-c2 { background-image: url('kokteyl2.jpeg'); } /* Kokteyl 2. Foto */
+        .bg-c3 { background-image: url('kokteyl3.jpeg'); } /* Kokteyl 3. Foto */
+        
+        .bg-b1 { background-image: url('bira1.jpeg'); } /* Bira 1. Foto */
+        .bg-b2 { background-image: url('bira2.jpeg'); } /* Bira 2. Foto */
+        .bg-b3 { background-image: url('bira3.jpeg'); } /* Bira 3. Foto */
+
+        /* Arkaplan Vektör Çizimleri İçin (İsteğe Bağlı) */
+        .vector-bg {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @media (max-width: 900px) {
+            .wine-grid, .classic-cocktails { grid-template-columns: 1fr; }
+            .beverage-grid { grid-template-columns: 1fr; }
+            .drink-banner { height: 40vh; }
+            .banner-overlay h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body class="drink-page">
+
+    <header class="header">
+        <div class="logo"><a href="index.html">NÜVE</a></div>
+        
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+        <label for="menu-toggle" class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                <li><a href="menu.html" class="active">Menü</a></li>
+                <li><a href="tohum-evlat-edinme.html">Tohum Kütüphanesi</a></li>
+                <li><a href="misafirhane.html">Misafirhane</a></li>
+                <li class="mobile-only"><a href="rezervasyon.html" class="btn-reservation">REZERVASYON</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions desktop-only">
+            <a href="rezervasyon.html" class="btn-reservation">REZERVASYON</a>
+        </div>
+        
+        
+    </header>
+     <style>
+    /* MOBİL MENÜ KURTARICI (CSS dosyasını ezip geçer) */
+    @media (max-width: 768px) {
+        /* 1. Menüyü başlangıçta gizle ve şeklini ayarla */
+        .navbar {
+            display: none !important;
+            position: absolute !important;
+            top: 100% !important; /* Header'ın hemen altında açılsın */
+            left: 0 !important;
+            width: 100% !important;
+            background-color: #0a0a0a !important; /* Nüve siyahı */
+            padding: 20px 0 !important;
+            z-index: 9999 !important;
+            text-align: center !important;
+        }
+        
+        /* 2. Linkleri düzgünce alt alta diz */
+        .navbar ul {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 20px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            list-style: none !important;
+        }
+
+        /* 3. SİHİRLİ DOKUNUŞ: Checkbox'a tıklanınca menüyü zorla aç! */
+        #menu-toggle:checked ~ .navbar {
+            display: block !important; 
+        }
+
+        /* Sayfadaki çirkin checkbox kutucuğunu gizle */
+        #menu-toggle {
+            display: none !important;
+        }
+
+        /* Hamburger ikonunu mobilde kesinlikle görünür yap */
+        .hamburger {
+            display: flex !important;
+            flex-direction: column !important;
+            cursor: pointer !important;
+            z-index: 10000 !important;
+        }
+    }
+</style>
+
+    <main>
+        
+        <div id="saraplar" class="drink-banner">
+    <div class="banner-col bg-w1"></div>
+    <div class="banner-col bg-w2"></div>
+    <div class="banner-col bg-w3"></div>
+    <div class="banner-overlay">
+        <h2>NÜVE</h2>
+        <p>ŞARAP - WINE</p>
+    </div>
+</div>
+
+        <section class="drink-menu-section">
+            <div class="section-title">
+                <h3>KADEH ŞARAPLAR</h3>
+                <p>WINE BY THE GLASS</p>
+            </div>
+            
+            <div class="wine-grid">
+                <div class="menu-category">
+                    <h4>KÖPÜKLÜ ŞARAP <span>SPARKLING WINE (15 cl)</span></h4>
+                    <div class="drink-item">
+                        <span class="name">Prosecco DOCG, Veneto</span>
+                        <span class="desc">Santa Margherita NV, Brut</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">Champagne Brut Impérial</span>
+                        <span class="desc">Moët & Chandon NV</span>
+                    </div>
+
+                    <h4 style="margin-top:40px;">BEYAZ ŞARAPLAR <span>WHITE WINES (15 cl)</span></h4>
+                    <div class="drink-item">
+                        <span class="name">Emir 2025</span>
+                        <span class="desc">Urla - İzmir</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">Sauvignon Blanc 2023</span>
+                        <span class="desc">Aydın</span>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h4>KIRMIZI ŞARAPLAR <span>RED WINES (15 cl)</span></h4>
+                    <div class="drink-item">
+                        <span class="name">Çal Karası 2024</span>
+                        <span class="desc">Çal - Denizli</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">Vintage, Boğazkere 2020</span>
+                        <span class="desc">Diyarbakır</span>
+                    </div>
+
+                    <h4 style="margin-top:40px;">ROZE ŞARAP <span>ROSE WINES (15 cl)</span></h4>
+                    <div class="drink-item">
+                        <span class="name">Kavaklıdere Lâl</span>
+                        <span class="desc">Çal karası - Denizli</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="drink-banner">
+            <div class="banner-col bg-c1"></div>
+            <div class="banner-col bg-c2"></div>
+            <div class="banner-col bg-c3"></div>
+            <div class="banner-overlay">
+                <h2>NÜVE</h2>
+                <p>KOKTEYLLER - COCKTAILS</p>
+            </div>
+        </div>
+
+        <section class="drink-menu-section">
+            <div class="section-title">
+                <h3>İMZA KOKTEYLLER</h3>
+                <p>SIGNATURE COCKTAILS</p>
+            </div>
+
+            <div class="grid-2-col">
+                <div class="menu-col">
+                    <div class="drink-item">
+                        <span class="name">NÜVE / THE CORE</span>
+                        <span class="desc">Hendrick's Cin, St-Germain (Mürver Çiçeği), Yeşil Elma Özü, Salatalık, Yenilebilir Altın Tozu</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">TOPRAK / SOIL</span>
+                        <span class="desc">Johnnie Walker Black Label Viski, Pancar Cordial, Taze Kekik, Ceviz Bitters</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">KÜL / ASH</span>
+                        <span class="desc">Casamigos Mezcal, Agave, Kömür İsi, Taze Greyfurt Suyu, İsli Acı Biber</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">HASAT / HARVEST</span>
+                        <span class="desc">Zacapa No.23 Rom, Karadut Püresi, Kuru İncir Özü, Tarçın Tütsüsü</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">İYOT / IODINE</span>
+                        <span class="desc">Don Julio Blanco Tekila, Deniz Börülcesi İnfüzyonu, Taze Misket Limonu, Urla Deniz Tuzu</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">BERRAK / LUCID</span>
+                        <span class="desc">Belvedere Votka, Şeffaf Pembe Domates Suyu, Beyaz Balzamik, Fesleğen Yağı</span>
+                    </div>
+                </div>
+
+                <div class="menu-col">
+                    <div class="drink-item">
+                        <span class="name">ÇİY / DEW</span>
+                        <span class="desc">Tanqueray No. 10 Cin, Taze Reyhan Özü, Limon Çiçeği, Prosecco</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">KABUK / HUSK</span>
+                        <span class="desc">Bulleit Bourbon Viski, Kavrulmuş Buğday Şurubu, Frangelico, Portakal Yağları</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">FLORA / FLORA</span>
+                        <span class="desc">Belvedere Votka, Italicus Bergamot Likörü, Papatya Çayı, Yenilebilir Kabak Çiçeği</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">MİRAS / LEGACY</span>
+                        <span class="desc">Woodford Reserve Viski, Mahlep Şurubu, Kahlua Kahve Likörü, Yanık Süt Köpüğü</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">DÖNGÜ / CYCLE</span>
+                        <span class="desc">Captain Morgan Rom, Narenciye Kabukları Özü, Taze Zencefil, Maden Suyu</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">KÖZ / EMBER</span>
+                        <span class="desc">Lagavulin Viski, Çam Balı, İsli Biberiye, Taze Limon Suyu</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="drink-menu-section" style="padding-top: 0;">
+            <div class="section-title">
+                <h3>KLASİK KOKTEYLLER</h3>
+                <p>CLASSIC COCKTAILS</p>
+            </div>
+
+           <div class="menu-category" style="margin-top: 60px;">
+                <div class="classic-grid">
+                    <div class="classic-item" style="justify-content: center;"><span class="name">NEGRONİ</span></div>
+                    <div class="classic-item" style="justify-content: center;"><span class="name">MARGARITA</span></div>
+                    <div class="classic-item" style="justify-content: center;"><span class="name">OLD FASHIONED</span></div>
+                    <div class="classic-item" style="justify-content: center;"><span class="name">BLOODY MARY</span></div>
+                    <div class="classic-item" style="justify-content: center;"><span class="name">DRY MARTINI</span></div>
+                    <div class="classic-item" style="justify-content: center;"><span class="name">MOSCOW MULE</span></div>
+                    <div class="classic-item" style="justify-content: center;"><span class="name">WHİSKEY SOUR</span></div>
+                    <div class="classic-item" style="justify-content: center;"><span class="name">NEWYORK SOUR</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="drink-banner">
+            <div class="banner-col bg-b1"></div>
+            <div class="banner-col bg-b2"></div>
+            <div class="banner-col bg-b3"></div>
+            <div class="banner-overlay">
+                <h2>NÜVE</h2>
+                <p>BİRALAR - ALKOLSÜZ İÇECEKLER</p>
+            </div>
+        </div>
+
+        <section class="drink-menu-section">
+            <div class="beverage-grid">
+                
+                <div class="menu-category">
+                    <div class="section-title" style="margin-bottom: 40px;">
+                        <h3>BİRALAR</h3>
+                        <p>BEERS</p>
+                    </div>
+                    <div class="drink-item"><span class="name">Seferihisar Arpa Suyu</span></div>
+                    <div class="drink-item"><span class="name">Karakılçık Buğday Birası</span></div>
+                    <div class="drink-item"><span class="name">İsli Kehribar</span></div>
+                    <div class="drink-item"><span class="name">Ege Botanik IPA</span></div>
+                </div>
+
+                <div class="menu-category">
+                    <div class="section-title" style="margin-bottom: 40px;">
+                        <h3>FERMENTE İÇECEKLER</h3>
+                        <p>FERMENTED DRINKS</p>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">Sıfır Atık Kombucha</span>
+                        <span class="desc">Közlenmiş Şeftali & Reyhan</span>
+                    </div>
+                    <div class="drink-item">
+                        <span class="name">Nüve Botanik Gazoz</span>
+                        <span class="desc">Satsuma Mandalinası & Damla Sakızı</span>
+                    </div>
+                    <div class="drink-item"><span class="name">Koruk Suyu</span></div>
+                    <div class="drink-item"><span class="name">Cold brew zeytin yaprağı çayı</span></div>
+
+                </div>
+
+                <div class="menu-category">
+                    <div class="section-title" style="margin-bottom: 40px;">
+                        <h3>SU & SODA</h3>
+                        <p>WATER & MINERAL WATER</p>
+                    </div>
+                    <div class="drink-item"><span class="name">Doğal Kaynak Suyu</span></div>
+                    <div class="drink-item"><span class="name">Yerel Mineralli Su</span></div>
+                    <div class="drink-item"><span class="name">Toprak Testi Suyu</span></div>
+                    <div class="drink-item"><span class="name">Botanik İnfüze Suyu</span></div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="awards-section">
+            <span class="award">MICHELIN 2026</span>
+            <span class="award-dot">•</span>
+            <span class="award">SUSTAINABLE GASTRONOMY</span>
+            <span class="award-dot">•</span>
+            <span class="award">GAULT & MILLAU</span>
+            <span class="award-dot">•</span>
+            <span class="award">FARM TO TABLE AWARD</span>
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>NÜVE</h3>
+                <p>Doğadan aldığımızı, minnetle doğaya geri veriyoruz. NÜVE, sıfır atık felsefesiyle şekillenen kapalı bir gastronomi ekosistemidir.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Ziyaret</h3>
+                <p>Ege'nin Kalbi<br>Seferihisar, İzmir / Türkiye</p>
+                <p class="contact-info">T: +90 000 000 00 00<br>E: nüve@mail.com</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Çalışma Saatleri</h3>
+                <p>Salı - Pazar: 18:30 - 23:30<br><em>Pazartesi günleri doğayı ve ekibimizi dinlendiriyoruz.</em></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 NÜVE. Tüm Hakları Saklıdır. Üniverste projesidir. | Yaren Ertürk. Melike Naz Şamiloğlu.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

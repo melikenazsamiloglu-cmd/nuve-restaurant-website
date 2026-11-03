@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezervasyon | NÜVE - Zamanı Durdurun</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="reservation-page">
+
+    <header class="header">
+        <div class="logo"><a href="index.html">NÜVE</a></div>
+        
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+        <label for="menu-toggle" class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                <li><a href="menu.html" class="active">Menü</a></li>
+                <li><a href="tohum-evlat-edinme.html">Tohum Kütüphanesi</a></li>
+                <li><a href="misafirhane.html">Misafirhane</a></li>
+                <li class="mobile-only"><a href="rezervasyon.html" class="btn-reservation">REZERVASYON</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions desktop-only">
+            <a href="rezervasyon.html" class="btn-reservation">REZERVASYON</a>
+        </div>
+        
+    </header>
+     <style>
+    /* MOBİL MENÜ KURTARICI (CSS dosyasını ezip geçer) */
+    @media (max-width: 768px) {
+        /* 1. Menüyü başlangıçta gizle ve şeklini ayarla */
+        .navbar {
+            display: none !important;
+            position: absolute !important;
+            top: 100% !important; /* Header'ın hemen altında açılsın */
+            left: 0 !important;
+            width: 100% !important;
+            background-color: #0a0a0a !important; /* Nüve siyahı */
+            padding: 20px 0 !important;
+            z-index: 9999 !important;
+            text-align: center !important;
+        }
+        
+        /* 2. Linkleri düzgünce alt alta diz */
+        .navbar ul {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 20px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            list-style: none !important;
+        }
+
+        /* 3. SİHİRLİ DOKUNUŞ: Checkbox'a tıklanınca menüyü zorla aç! */
+        #menu-toggle:checked ~ .navbar {
+            display: block !important; 
+        }
+
+        /* Sayfadaki çirkin checkbox kutucuğunu gizle */
+        #menu-toggle {
+            display: none !important;
+        }
+
+        /* Hamburger ikonunu mobilde kesinlikle görünür yap */
+        .hamburger {
+            display: flex !important;
+            flex-direction: column !important;
+            cursor: pointer !important;
+            z-index: 10000 !important;
+        }
+    }
+</style>
+
+    <main class="reservation-container">
+        <section class="reservation-content">
+            <div class="res-text">
+                <span class="sub-title">BİZE KATILIN</span>
+                <h1>TOPRAĞIN SOFRASINDA<br>YERİNİZİ AYIRTIN</h1>
+                <p>NÜVE'de her akşam sınırlı sayıda misafirimizi ağırlıyor, her tabağı o günün hasadına göre hazırlıyoruz. Bu bir yemekten ziyade, doğayla kurulan dairesel bir bağdır.</p>
+                
+                <div class="res-contact-info">
+                    <p><strong>Adres:</strong> Seferihisar, İzmir / Türkiye</p>
+                    <p><strong>Telefon:</strong> +90 000 000 00 00</p>
+                    <p><strong>E-posta:</strong> rezervasyon@nuve.com.tr</p>
+                </div>
+            </div>
+
+            <div class="res-form-box">
+                <form action="#">
+                    <div class="input-group">
+                        <label>İsim Soyisim</label>
+                        <input type="text" placeholder="Adınız ve Soyadınız" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Tercihiniz</label>
+                        <select required>
+                            <option value="" disabled selected>Lütfen Seçiniz</option>
+                            <option value="restoran">Akşam Yemeği (Döngüsel Menü)</option>
+                            <option value="konaklama">Misafirhane (Konaklama)</option>
+                            <option value="ikisi">Gastronomik Konaklama Deneyimi</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Tarih</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Kişi Sayısı</label>
+                            <input type="number" min="1" max="10" placeholder="0" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Notunuz (Alerjenler veya Özel Talepler)</label>
+                        <textarea rows="4" placeholder="Bize iletmek istediğiniz detaylar..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">TALEP GÖNDER</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 NÜVE. Tüm Hakları Saklıdır. Üniversite projesidir. | Yaren Ertürk. Melike Naz Şamiloğlu.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
